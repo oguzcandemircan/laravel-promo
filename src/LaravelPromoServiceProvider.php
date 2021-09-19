@@ -2,9 +2,9 @@
 
 namespace OguzcanDemircan\LaravelPromo;
 
+use OguzcanDemircan\LaravelPromo\Commands\LaravelPromoCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use OguzcanDemircan\LaravelPromo\Commands\LaravelPromoCommand;
 
 class LaravelPromoServiceProvider extends PackageServiceProvider
 {

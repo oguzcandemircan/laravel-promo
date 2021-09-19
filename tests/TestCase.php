@@ -3,8 +3,8 @@
 namespace OguzcanDemircan\LaravelPromo\Tests;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Orchestra\Testbench\TestCase as Orchestra;
 use OguzcanDemircan\LaravelPromo\LaravelPromoServiceProvider;
+use Orchestra\Testbench\TestCase as Orchestra;
 
 class TestCase extends Orchestra
 {
