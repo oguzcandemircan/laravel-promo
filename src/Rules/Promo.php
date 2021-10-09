@@ -2,11 +2,11 @@
 
 namespace OguzcanDemircan\LaravelPromo\Rules;
 
-use OguzcanDemircan\LaravelPromo\Facades\LaravelPromo;
 use Illuminate\Contracts\Validation\Rule;
+use OguzcanDemircan\LaravelPromo\Exceptions\PromoAlreadyRedeemed;
 use OguzcanDemircan\LaravelPromo\Exceptions\PromoExpired;
 use OguzcanDemircan\LaravelPromo\Exceptions\PromoIsInvalid;
-use OguzcanDemircan\LaravelPromo\Exceptions\PromoAlreadyRedeemed;
+use OguzcanDemircan\LaravelPromo\Facades\LaravelPromo;
 
 class Promo implements Rule
 {
@@ -32,12 +32,15 @@ class Promo implements Rule
             }
         } catch (PromoIsInvalid $exception) {
             $this->isInvalid = true;
+
             return false;
         } catch (PromoExpired $exception) {
             $this->isExpired = true;
+
             return false;
         } catch (PromoAlreadyRedeemed $exception) {
             $this->wasRedeemed = true;
+
             return false;
         }
 
@@ -57,6 +60,7 @@ class Promo implements Rule
         if ($this->isExpired) {
             return trans('OguzcanDemircan\LaravelPromo\Facades\LaravelPromo::validation.code_expired');
         }
+
         return trans('OguzcanDemircan\LaravelPromo\Facades\LaravelPromo::validation.code_invalid');
     }
 }

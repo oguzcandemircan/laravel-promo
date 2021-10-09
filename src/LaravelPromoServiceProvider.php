@@ -2,8 +2,8 @@
 
 namespace OguzcanDemircan\LaravelPromo;
 
-use OguzcanDemircan\Promocodes\PromoCodeGenerator;
 use OguzcanDemircan\LaravelPromo\Commands\LaravelPromoCommand;
+use OguzcanDemircan\Promocodes\PromoCodeGenerator;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
@@ -31,6 +31,7 @@ class LaravelPromoServiceProvider extends PackageServiceProvider
             $generator->setPrefix(config('promo.prefix'));
             $generator->setSuffix(config('promo.suffix'));
             $generator->setSeparator(config('promo.separator'));
+
             return new LaravelPromo($generator);
         });
     }

@@ -55,6 +55,7 @@ class PromoCodeGenerator
         }
 
         $this->generatedCodes[] = $code;
+
         return $code;
     }
 
