@@ -26,7 +26,7 @@ class LaravelPromoServiceProvider extends PackageServiceProvider
 
     public function registeringPackage()
     {
-        $this->app->singleton('LaravelPromo', function () {
+        $this->app->singleton(LaravelPromo::class, function () {
             $generator = new PromoCodeGenerator(config('promo.characters'), config('promo.mask'));
             $generator->setPrefix(config('promo.prefix'));
             $generator->setSuffix(config('promo.suffix'));

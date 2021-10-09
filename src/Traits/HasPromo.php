@@ -14,7 +14,7 @@ trait HasPromo
      */
     public function promo()
     {
-        return $this->morphMany(config('Promo.model', Promo::class), 'model');
+        return $this->morphMany(config('promo.model', Promo::class), 'model');
     }
 
     /**
@@ -23,7 +23,7 @@ trait HasPromo
      * @param null $expires_at
      * @return Promo[]
      */
-    public function createPromos(int $amount, array $data = [], $expires_at = null)
+    public function createPromo(int $amount, array $data = [], $expires_at = null)
     {
         return LaravelPromo::create($this, $amount, $data, $expires_at);
     }
@@ -33,7 +33,7 @@ trait HasPromo
      * @param null $expires_at
      * @return Promo
      */
-    public function createPromo(array $data = [], $expires_at = null)
+    public function createPromos(array $data = [], $expires_at = null)
     {
         return $this->createPromo(1, $data, $expires_at)[0];
     }
