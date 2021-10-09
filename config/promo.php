@@ -17,7 +17,7 @@ return [
     /*
      * Database pivot table name for promos and users relation
      */
-    'relation_table' => 'user_promo',
+    'relation_table' => 'promo_user',
 
     /*
      * List of characters that will be used for promo code generation.

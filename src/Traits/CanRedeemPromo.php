@@ -55,6 +55,6 @@ trait CanRedeemPromo
      */
     public function promos()
     {
-        return $this->belongsToMany(Promo::class)->withPivot('redeemed_at');
+        return $this->belongsToMany(Promo::class, config('promo.relation_table'))->withPivot('redeemed_at');
     }
 }
