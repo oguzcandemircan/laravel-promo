@@ -24,11 +24,11 @@ class Promo implements Rule
     public function passes($attribute, $value)
     {
         try {
-            $Promo = LaravelPromo::check($value);
+            $promo = LaravelPromo::check($value);
 
             // Check if the Promo was already redeemed
-            if (auth()->check() && $Promo->users()->wherePivot('user_id', auth()->id())->exists()) {
-                throw PromoAlreadyRedeemed::create($Promo);
+            if (auth()->check() && $promo->users()->wherePivot('user_id', auth()->id())->exists()) {
+                throw PromoAlreadyRedeemed::create($promo);
             }
         } catch (PromoIsInvalid $exception) {
             $this->isInvalid = true;
@@ -49,18 +49,17 @@ class Promo implements Rule
 
     /**
      * Get the validation error message.
-     *
-     * @return string
+     * @return Illuminate\Contracts\Translation\Translator|array<array-key, mixed>|null|string
      */
     public function message()
     {
         if ($this->wasRedeemed) {
-            return trans('LaravelPromo::validation.code_redeemed');
+            return trans('promo::validation.code_redeemed');
         }
         if ($this->isExpired) {
-            return trans('LaravelPromo::validation.code_expired');
+            return trans('promo::validation.code_expired');
         }
 
-        return trans('LaravelPromo::validation.code_invalid');
+        return trans('promo::validation.code_invalid');
     }
 }

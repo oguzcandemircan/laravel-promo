@@ -12,7 +12,7 @@ trait HasPromo
      *
      * @return mixed
      */
-    public function Promo()
+    public function promo()
     {
         return $this->morphMany(config('Promo.model', Promo::class), 'model');
     }
@@ -23,7 +23,7 @@ trait HasPromo
      * @param null $expires_at
      * @return Promo[]
      */
-    public function createPromo(int $amount, array $data = [], $expires_at = null)
+    public function createPromos(int $amount, array $data = [], $expires_at = null)
     {
         return LaravelPromo::create($this, $amount, $data, $expires_at);
     }

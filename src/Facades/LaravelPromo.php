@@ -5,7 +5,7 @@ namespace OguzcanDemircan\LaravelPromo\Facades;
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @mixin \OguzcanDemircan\LaravelPromo\Promo
+ * @mixin \OguzcanDemircan\LaravelPromo\LaravelPromo
  */
 class LaravelPromo extends Facade
 {
