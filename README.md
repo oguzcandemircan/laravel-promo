@@ -81,7 +81,7 @@ Please review [our security policy](../../security/policy) on how to report secu
 
 - [Oğuzcan Demircan](https://github.com/oguzcandemircan)
 - [All Contributors](../../contributors)
-- I was inspired by the [laravel-promocodes](https://github.com/zgabievi/laravel-promocodes) and [laravel-vouchers](https://github.com/beyondcode/laravel-vouchers) package
+- I was inspired by the [laravel-promocodes](https://github.com/zgabievi/laravel-promocodes) and [laravel-vouchers](https://github.com/beyondcode/laravel-vouchers) packages
 
 ## License
 
