@@ -16,6 +16,6 @@ class LaravelPromo extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return LaravelPromo::class;
+        return 'laravel-promo';
     }
 }
