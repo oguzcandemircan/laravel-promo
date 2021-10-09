@@ -3,10 +3,9 @@
 namespace OguzcanDemircan\LaravelPromo;
 
 use Illuminate\Database\Eloquent\Model;
-use OguzcanDemircan\LaravelPromo\Exceptions\PromoIsInvalid;
 use OguzcanDemircan\LaravelPromo\Exceptions\PromoExpired;
+use OguzcanDemircan\LaravelPromo\Exceptions\PromoIsInvalid;
 use OguzcanDemircan\LaravelPromo\Models\Promo;
-use OguzcanDemircan\LaravelPromo\PromoCodeGenerator;
 
 class LaravelPromo
 {
