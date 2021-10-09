@@ -6,14 +6,40 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
+    /**
+     * Run the migrations.
+     */
     public function up()
     {
-        Schema::create('laravel-promo_table', function (Blueprint $table) {
-            $table->id();
+        $promoTable = config('promo.table', 'promo');
+        $pivotTable = config('promo.pivot_table', 'user_promos');
 
-            // add fields
-
+        Schema::create($promoTable, function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('code', 32)->unique();
+            $table->morphs('model');
+            $table->text('data')->nullable();
+            $table->timestamp('expires_at')->nullable();
             $table->timestamps();
         });
+
+        Schema::create($pivotTable, function (Blueprint $table) use ($promoTable) {
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('promo_id');
+            $table->timestamp('redeemed_at');
+
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('promo_id')->references('id')->on($promoTable);
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down()
+    {
+        Schema::dropIfExists(config('promo.relation_table', 'user_promo'));
+        Schema::dropIfExists(config('promo.table', 'promo'));
     }
 };
