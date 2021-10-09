@@ -20,7 +20,8 @@ class LaravelPromoServiceProvider extends PackageServiceProvider
             ->hasConfigFile()
             ->hasViews()
             ->hasMigration('create_promo_table')
-            ->hasCommand(LaravelPromoCommand::class);
+            ->hasCommand(LaravelPromoCommand::class)
+            ->hasTranslations();
     }
 
     public function registeringPackage()
