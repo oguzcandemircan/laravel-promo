@@ -3,7 +3,7 @@
 namespace OguzcanDemircan\LaravelPromo;
 
 use OguzcanDemircan\LaravelPromo\Commands\LaravelPromoCommand;
-use OguzcanDemircan\Promocodes\PromoCodeGenerator;
+use OguzcanDemircan\LaravelPromo\PromoCodeGenerator;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 

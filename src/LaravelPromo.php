@@ -12,7 +12,7 @@ class LaravelPromo
 {
     /** @var PromoCodeGenerator */
     private $generator;
-    /** @var \OguzcanDemircan\promoCodes\Models\promoCode */
+    /** @var \OguzcanDemircan\LaravelPromo\Models\Promo */
     private $promoCodeModel;
 
     public function __construct(PromoCodeGenerator $generator)
