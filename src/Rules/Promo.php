@@ -49,9 +49,8 @@ class Promo implements Rule
 
     /**
      * Get the validation error message.
-     * @return Illuminate\Contracts\Translation\Translator|array<array-key, mixed>|null|string
      */
-    public function message()
+    public function message(): string
     {
         if ($this->wasRedeemed) {
             return trans('promo::validation.code_redeemed');
