@@ -2,8 +2,8 @@
 
 namespace OguzcanDemircan\LaravelPromo\Traits;
 
-use OguzcanDemircan\LaravelPromo\Models\Promo;
 use OguzcanDemircan\LaravelPromo\Facades\LaravelPromo;
+use OguzcanDemircan\LaravelPromo\Models\Promo;
 
 trait HasPromo
 {

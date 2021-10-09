@@ -2,16 +2,16 @@
 
 namespace OguzcanDemircan\LaravelPromo;
 
+use Illuminate\Database\Eloquent\Model;
 use OguzcanDemircan\promoCodes\Exceptions\promoCodeExpired;
 use OguzcanDemircan\promoCodes\Exceptions\promoCodeIsInvalid;
 use OguzcanDemircan\promoCodes\Models\promoCode;
-use Illuminate\Database\Eloquent\Model;
 
 class LaravelPromo
 {
     /** @var PromoCodeGenerator */
     private $generator;
-    /** @var \OguzcanDemircan\promoCodes\Models\promoCode  */
+    /** @var \OguzcanDemircan\promoCodes\Models\promoCode */
     private $promoCodeModel;
 
     public function __construct(PromoCodeGenerator $generator)

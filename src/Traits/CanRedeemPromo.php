@@ -2,12 +2,12 @@
 
 namespace OguzcanDemircan\LaravelPromo\Traits;
 
-use OguzcanDemircan\LaravelPromo\Facades\LaravelPromo;
-use OguzcanDemircan\LaravelPromo\Models\Promo;
 use OguzcanDemircan\LaravelPromo\Events\PromoRedeemed;
+use OguzcanDemircan\LaravelPromo\Exceptions\PromoAlreadyRedeemed;
 use OguzcanDemircan\LaravelPromo\Exceptions\PromoExpired;
 use OguzcanDemircan\LaravelPromo\Exceptions\PromoIsInvalid;
-use OguzcanDemircan\LaravelPromo\Exceptions\PromoAlreadyRedeemed;
+use OguzcanDemircan\LaravelPromo\Facades\LaravelPromo;
+use OguzcanDemircan\LaravelPromo\Models\Promo;
 
 trait CanRedeemPromo
 {
@@ -30,7 +30,7 @@ trait CanRedeemPromo
         }
 
         $this->promos()->attach($promo, [
-            'redeemed_at' => now()
+            'redeemed_at' => now(),
         ]);
 
         event(new PromoRedeemed($this, $promo));

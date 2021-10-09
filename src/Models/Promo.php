@@ -17,7 +17,7 @@ class Promo extends Model
         'model_type',
         'code',
         'data',
-        'expires_at'
+        'expires_at',
     ];
 
     /**
@@ -26,7 +26,7 @@ class Promo extends Model
      * @var array
      */
     protected $dates = [
-        'expires_at'
+        'expires_at',
     ];
 
     /**
@@ -35,7 +35,7 @@ class Promo extends Model
      * @var array
      */
     protected $casts = [
-        'data' => 'collection'
+        'data' => 'collection',
     ];
 
     /**
@@ -73,6 +73,6 @@ class Promo extends Model
      */
     public function isNotExpired()
     {
-        return !$this->isExpired();
+        return ! $this->isExpired();
     }
 }
