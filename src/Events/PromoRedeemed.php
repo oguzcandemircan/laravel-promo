@@ -17,6 +17,6 @@ class PromoRedeemed
     public function __construct($user, Promo $promo)
     {
         $this->user = $user;
-        $this->Promo = $promo;
+        $this->promo = $promo;
     }
 }
