@@ -73,6 +73,6 @@ class Promo extends Model
      */
     public function isNotExpired()
     {
-        return !$this->isExpired();
+        return ! $this->isExpired();
     }
 }
