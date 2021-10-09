@@ -3,9 +3,10 @@
 namespace OguzcanDemircan\LaravelPromo;
 
 use Illuminate\Database\Eloquent\Model;
-use OguzcanDemircan\promoCodes\Exceptions\promoCodeExpired;
-use OguzcanDemircan\promoCodes\Exceptions\promoCodeIsInvalid;
-use OguzcanDemircan\promoCodes\Models\promoCode;
+use OguzcanDemircan\LaravelPromo\Exceptions\PromoIsInvalid;
+use OguzcanDemircan\LaravelPromo\Exceptions\PromoExpired;
+use OguzcanDemircan\LaravelPromo\Models\Promo;
+use OguzcanDemircan\LaravelPromo\PromoCodeGenerator;
 
 class LaravelPromo
 {
@@ -17,7 +18,7 @@ class LaravelPromo
     public function __construct(PromoCodeGenerator $generator)
     {
         $this->generator = $generator;
-        $this->promoCodeModel = app(config('promoCodes.model', promoCode::class));
+        $this->promoCodeModel = app(config('promo.model', Promo::class));
     }
 
     /**
@@ -64,19 +65,19 @@ class LaravelPromo
 
     /**
      * @param string $code
-     * @throws promoCodeIsInvalid
-     * @throws promoCodeExpired
-     * @return promoCode
+     * @throws PromoIsInvalid
+     * @throws PromoExpired
+     * @return Promo
      */
     public function check(string $code)
     {
         $promoCode = $this->promoCodeModel->whereCode($code)->first();
 
         if (is_null($promoCode)) {
-            throw promoCodeIsInvalid::withCode($code);
+            throw PromoIsInvalid::withCode($code);
         }
         if ($promoCode->isExpired()) {
-            throw promoCodeExpired::create($promoCode);
+            throw PromoExpired::create($promoCode);
         }
 
         return $promoCode;

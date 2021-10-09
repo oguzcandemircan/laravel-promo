@@ -1,6 +1,6 @@
 <?php
 
-namespace OguzcanDemircan\Promocodes;
+namespace OguzcanDemircan\LaravelPromo;
 
 use Illuminate\Support\Str;
 

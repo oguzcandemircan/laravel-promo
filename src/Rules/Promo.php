@@ -55,12 +55,12 @@ class Promo implements Rule
     public function message()
     {
         if ($this->wasRedeemed) {
-            return trans('OguzcanDemircan\LaravelPromo\Facades\LaravelPromo::validation.code_redeemed');
+            return trans('LaravelPromo::validation.code_redeemed');
         }
         if ($this->isExpired) {
-            return trans('OguzcanDemircan\LaravelPromo\Facades\LaravelPromo::validation.code_expired');
+            return trans('LaravelPromo::validation.code_expired');
         }
 
-        return trans('OguzcanDemircan\LaravelPromo\Facades\LaravelPromo::validation.code_invalid');
+        return trans('LaravelPromo::validation.code_invalid');
     }
 }
