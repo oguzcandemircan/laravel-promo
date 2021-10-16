@@ -2,7 +2,11 @@
 
 namespace OguzcanDemircan\LaravelPromo;
 
+use Closure;
 use Illuminate\Database\Eloquent\Model;
+use OguzcanDemircan\LaravelPromo\Enums\ActiveEnum;
+use OguzcanDemircan\LaravelPromo\Enums\PromoTypeEnum;
+use OguzcanDemircan\LaravelPromo\Exceptions\PromoAlreadyRedeemed;
 use OguzcanDemircan\LaravelPromo\Exceptions\PromoExpired;
 use OguzcanDemircan\LaravelPromo\Exceptions\PromoIsInvalid;
 use OguzcanDemircan\LaravelPromo\Models\Promo;
@@ -12,12 +16,17 @@ class LaravelPromo
     /** @var PromoCodeGenerator */
     private $generator;
     /** @var \OguzcanDemircan\LaravelPromo\Models\Promo */
-    private $promoCodeModel;
+    private $promoModel;
 
     public function __construct(PromoCodeGenerator $generator)
     {
         $this->generator = $generator;
-        $this->promoCodeModel = app(config('promo.model', Promo::class));
+        $this->promoModel = app(config('promo.model', Promo::class));
+    }
+
+    public function make()
+    {
+        return (new PromoGenerator($this->promoModel));
     }
 
     /**
@@ -45,17 +54,20 @@ class LaravelPromo
      * @param null $expires_at
      * @return array
      */
-    public function create(Model $model, int $amount = 1, array $data = [], $expires_at = null)
+    public function create(int $amount = 1, array $rewards = [], array $conditions = [], array $data = [], $expires_at = null, $start_at = null)
     {
         $promoCodes = [];
 
-        foreach ($this->generate($amount) as $promoCodeCode) {
-            $promoCodes[] = $this->promoCodeModel->create([
-                'model_id' => $model->getKey(),
-                'model_type' => $model->getMorphClass(),
-                'code' => $promoCodeCode,
+        foreach ($this->generate($amount) as $code) {
+            $promoCodes[] = $this->promoModel->create([
+                'type' => PromoTypeEnum::coupon(),
+                'is_active' => ActiveEnum::active(),
+                'code' => $code,
+                'rewards' => $rewards,
+                'conditions' => $conditions,
                 'data' => $data,
                 'expires_at' => $expires_at,
+                'start_at' => $start_at,
             ]);
         }
 
@@ -70,16 +82,20 @@ class LaravelPromo
      */
     public function check(string $code)
     {
-        $promoCode = $this->promoCodeModel->whereCode($code)->first();
+        $promo = $this->promoModel->whereCode($code)->first();
 
-        if (is_null($promoCode)) {
+        if (is_null($promo)) {
             throw PromoIsInvalid::withCode($code);
         }
-        if ($promoCode->isExpired()) {
-            throw PromoExpired::create($promoCode);
+        if ($promo->isExpired()) {
+            throw PromoExpired::create($promo);
         }
 
-        return $promoCode;
+        if (auth()->check() && $promo->users()->wherePivot('user_id', auth()->id())->exists()) {
+            throw PromoAlreadyRedeemed::create($promo);
+        }
+
+        return $promo;
     }
 
     /**
@@ -89,7 +105,7 @@ class LaravelPromo
     {
         $promoCode = $this->generator->generateUnique();
 
-        while ($this->promoCodeModel->whereCode($promoCode)->count() > 0) {
+        while ($this->promoModel->whereCode($promoCode)->count() > 0) {
             $promoCode = $this->generator->generateUnique();
         }
 

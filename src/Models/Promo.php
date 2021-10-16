@@ -4,21 +4,14 @@ namespace OguzcanDemircan\LaravelPromo\Models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use OguzcanDemircan\LaravelPromo\Traits\HasActive;
 
 class Promo extends Model
 {
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = [
-        'model_id',
-        'model_type',
-        'code',
-        'data',
-        'expires_at',
-    ];
+    use HasActive;
+
+
+    protected $guarded = [];
 
     /**
      * The attributes that should be mutated to dates.
@@ -27,6 +20,7 @@ class Promo extends Model
      */
     protected $dates = [
         'expires_at',
+        'start_at'
     ];
 
     /**
@@ -36,6 +30,11 @@ class Promo extends Model
      */
     protected $casts = [
         'data' => 'collection',
+        'conditions' => 'collection',
+        'rewards' => 'collection',
+        'data' => 'collection',
+        'expires_at' => 'datetime',
+        'start_at' => 'datetime',
     ];
 
     /**
@@ -63,7 +62,7 @@ class Promo extends Model
      */
     public function isExpired()
     {
-        return $this->expires_at ? Carbon::now()->gte($this->expires_at) : false;
+        return $this->expires_at ? $this->expires_at->isPast() : false;
     }
 
     /**
@@ -73,6 +72,16 @@ class Promo extends Model
      */
     public function isNotExpired()
     {
-        return ! $this->isExpired();
+        return !$this->isExpired();
+    }
+
+    public function isStart()
+    {
+        return $this->start_at ? $this->start_at->isFuture() : false;
+    }
+
+    public static function findByCode(string $code)
+    {
+        return self::where('code', $code)->first();
     }
 }

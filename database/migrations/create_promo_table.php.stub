@@ -12,13 +12,17 @@ return new class extends Migration
     public function up()
     {
         $promoTable = config('promo.table', 'promo');
-        $pivotTable = config('promo.pivot_table', 'user_promos');
+        $pivotTable = config('promo.relation_table', 'promo_user');
 
         Schema::create($promoTable, function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('type', 20);
+            $table->boolean('is_active');
             $table->string('code', 32)->unique();
-            $table->morphs('model');
-            $table->text('data')->nullable();
+            $table->json('rewards')->nullable();
+            $table->json('contidions')->nullable();
+            $table->json('data')->nullable();
+            $table->timestamp('start_at')->nullable();
             $table->timestamp('expires_at')->nullable();
             $table->timestamps();
         });
