@@ -23,6 +23,9 @@ class PromoGenerator
 
     public $is_active;
 
+    /** @var Model */
+    public $model;
+
     public function __construct(Model $model)
     {
         $this->model = $model;

@@ -32,7 +32,6 @@ class Promo extends Model
         'data' => 'collection',
         'conditions' => 'collection',
         'rewards' => 'collection',
-        'data' => 'collection',
         'expires_at' => 'datetime',
         'start_at' => 'datetime',
     ];
