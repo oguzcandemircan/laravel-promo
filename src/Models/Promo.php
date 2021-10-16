@@ -2,7 +2,6 @@
 
 namespace OguzcanDemircan\LaravelPromo\Models;
 
-use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use OguzcanDemircan\LaravelPromo\Traits\HasActive;
 
@@ -20,7 +19,7 @@ class Promo extends Model
      */
     protected $dates = [
         'expires_at',
-        'start_at'
+        'start_at',
     ];
 
     /**
@@ -71,7 +70,7 @@ class Promo extends Model
      */
     public function isNotExpired()
     {
-        return !$this->isExpired();
+        return ! $this->isExpired();
     }
 
     public function isStart()

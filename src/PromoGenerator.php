@@ -34,24 +34,28 @@ class PromoGenerator
     public function code($code = null)
     {
         $this->code = $code;
+
         return $this;
     }
 
     public function expire($date = null)
     {
         $this->expire_at = $date;
+
         return $this;
     }
 
     public function conditions($conditions = [])
     {
         $this->conditions = $conditions;
+
         return $this;
     }
 
     public function rewards($rewards = [])
     {
         $this->rewards = $rewards;
+
         return $this;
     }
 
