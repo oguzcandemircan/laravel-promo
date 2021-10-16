@@ -25,11 +25,6 @@ class Promo implements Rule
     {
         try {
             $promo = LaravelPromo::check($value);
-
-            // Check if the Promo was already redeemed
-            if (auth()->check() && $promo->users()->wherePivot('user_id', auth()->id())->exists()) {
-                throw PromoAlreadyRedeemed::create($promo);
-            }
         } catch (PromoIsInvalid $exception) {
             $this->isInvalid = true;
 
