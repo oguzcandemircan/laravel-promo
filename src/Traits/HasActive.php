@@ -5,7 +5,7 @@ namespace OguzcanDemircan\LaravelPromo\Traits;
 use OguzcanDemircan\LaravelPromo\Enums\ActiveEnum;
 
 /**
- * 
+ *
  */
 trait HasActive
 {
