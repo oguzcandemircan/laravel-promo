@@ -2,7 +2,6 @@
 
 namespace OguzcanDemircan\LaravelPromo;
 
-use Closure;
 use Illuminate\Database\Eloquent\Model;
 use OguzcanDemircan\LaravelPromo\Enums\ActiveEnum;
 use OguzcanDemircan\LaravelPromo\Enums\PromoTypeEnum;
