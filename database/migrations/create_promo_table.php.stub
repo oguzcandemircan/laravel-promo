@@ -20,7 +20,7 @@ return new class extends Migration
             $table->boolean('is_active');
             $table->string('code', 32)->unique();
             $table->json('rewards')->nullable();
-            $table->json('contidions')->nullable();
+            $table->json('conditions')->nullable();
             $table->json('data')->nullable();
             $table->timestamp('start_at')->nullable();
             $table->timestamp('expires_at')->nullable();
