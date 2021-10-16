@@ -61,8 +61,8 @@ class PromoGenerator
 
     public function generate()
     {
-        LaravelPromo::create(
-            1,
+        return LaravelPromo::createWithCode(
+            $this->code,
             $this->rewards,
             $this->conditions,
             $this->data,

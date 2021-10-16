@@ -13,13 +13,18 @@ use OguzcanDemircan\LaravelPromo\Tests\Models\User;
 class CanRedeemPromoTest extends TestCase
 {
     /** @test */
-    public function users_can_generate_promo()
+    public function generate_promo_with_code()
     {
         $promo = LaravelPromo::make()
             ->conditions(['key' => 'value'])
             ->rewards(['key' => 'value'])
             ->expire(now()->addMonth(1))
+            ->code('ABC')
             ->generate();
+
+        $this->assertDatabaseHas('promos', [
+            'code' => 'ABC',
+        ]);
     }
 
     /** @test */

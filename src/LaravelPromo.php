@@ -73,6 +73,21 @@ class LaravelPromo
         return $promoCodes;
     }
 
+
+    public function createWithCode(string $code, array $rewards = [], array $conditions = [], array $data = [], $expires_at = null, $start_at = null)
+    {
+        $this->promoModel->create([
+            'type' => PromoTypeEnum::coupon(),
+            'is_active' => ActiveEnum::active(),
+            'code' => $code,
+            'rewards' => $rewards,
+            'conditions' => $conditions,
+            'data' => $data,
+            'expires_at' => $expires_at,
+            'start_at' => $start_at,
+        ]);
+    }
+
     /**
      * @param string $code
      * @throws PromoIsInvalid
