@@ -2,7 +2,6 @@
 
 namespace OguzcanDemircan\LaravelPromo\Tests;
 
-use OguzcanDemircan\LaravelPromo\Facades\LaravelPromo;
 use OguzcanDemircan\LaravelPromo\PromoCodeGenerator;
 
 class GeneratorTest extends TestCase

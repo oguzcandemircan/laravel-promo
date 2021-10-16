@@ -3,16 +3,15 @@
 namespace OguzcanDemircan\LaravelPromo\Tests;
 
 use Illuminate\Support\Facades\Event;
-use OguzcanDemircan\LaravelPromo\Tests\Models\User;
 use OguzcanDemircan\LaravelPromo\Events\PromoRedeemed;
+use OguzcanDemircan\LaravelPromo\Exceptions\PromoAlreadyRedeemed;
 use OguzcanDemircan\LaravelPromo\Exceptions\PromoExpired;
 use OguzcanDemircan\LaravelPromo\Exceptions\PromoIsInvalid;
-use OguzcanDemircan\LaravelPromo\Exceptions\PromoAlreadyRedeemed;
 use OguzcanDemircan\LaravelPromo\Facades\LaravelPromo;
+use OguzcanDemircan\LaravelPromo\Tests\Models\User;
 
 class CanRedeemPromoTest extends TestCase
 {
-
     /** @test */
     public function users_can_generate_promo()
     {
