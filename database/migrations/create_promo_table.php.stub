@@ -22,7 +22,7 @@ return new class extends Migration
             $table->json('rewards')->nullable();
             $table->json('conditions')->nullable();
             $table->json('data')->nullable();
-            $table->timestamp('start_at')->nullable();
+            $table->timestamp('starts_at')->nullable();
             $table->timestamp('expires_at')->nullable();
             $table->timestamps();
         });

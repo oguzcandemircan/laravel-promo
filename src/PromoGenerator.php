@@ -9,7 +9,7 @@ class PromoGenerator
 {
     public $code;
 
-    public $start_at;
+    public $starts_at;
 
     public $expire_at;
 
@@ -67,7 +67,7 @@ class PromoGenerator
             $this->conditions,
             $this->data,
             $this->expire_at,
-            $this->start_at,
+            $this->starts_at,
         );
     }
 }

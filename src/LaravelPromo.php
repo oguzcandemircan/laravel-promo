@@ -53,7 +53,7 @@ class LaravelPromo
      * @param null $expires_at
      * @return array
      */
-    public function create(int $amount = 1, array $rewards = [], array $conditions = [], array $data = [], $expires_at = null, $start_at = null)
+    public function create(int $amount = 1, array $rewards = [], array $conditions = [], array $data = [], $expires_at = null, $starts_at = null)
     {
         $promoCodes = [];
 
@@ -66,7 +66,7 @@ class LaravelPromo
                 'conditions' => $conditions,
                 'data' => $data,
                 'expires_at' => $expires_at,
-                'start_at' => $start_at,
+                'starts_at' => $starts_at,
             ]);
         }
 
@@ -74,7 +74,7 @@ class LaravelPromo
     }
 
 
-    public function createWithCode(string $code, array $rewards = [], array $conditions = [], array $data = [], $expires_at = null, $start_at = null)
+    public function createWithCode(string $code, array $rewards = [], array $conditions = [], array $data = [], $expires_at = null, $starts_at = null)
     {
         $this->promoModel->create([
             'type' => PromoTypeEnum::coupon(),
@@ -84,7 +84,7 @@ class LaravelPromo
             'conditions' => $conditions,
             'data' => $data,
             'expires_at' => $expires_at,
-            'start_at' => $start_at,
+            'starts_at' => $starts_at,
         ]);
     }
 

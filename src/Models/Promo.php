@@ -19,7 +19,7 @@ class Promo extends Model
      */
     protected $dates = [
         'expires_at',
-        'start_at',
+        'starts_at',
     ];
 
     /**
@@ -32,7 +32,7 @@ class Promo extends Model
         'conditions' => 'collection',
         'rewards' => 'collection',
         'expires_at' => 'datetime',
-        'start_at' => 'datetime',
+        'starts_at' => 'datetime',
     ];
 
     /**
@@ -70,12 +70,12 @@ class Promo extends Model
      */
     public function isNotExpired()
     {
-        return ! $this->isExpired();
+        return !$this->isExpired();
     }
 
     public function isStart()
     {
-        return $this->start_at ? $this->start_at->isFuture() : false;
+        return $this->starts_at ? $this->starts_at->isFuture() : false;
     }
 
     public static function findByCode(string $code)
