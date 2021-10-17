@@ -73,7 +73,6 @@ class LaravelPromo
         return $promoCodes;
     }
 
-
     public function createWithCode(string $code, array $rewards = [], array $conditions = [], array $data = [], $expires_at = null, $starts_at = null)
     {
         $this->promoModel->create([
