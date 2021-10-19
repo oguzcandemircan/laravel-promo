@@ -2,6 +2,7 @@
 
 namespace OguzcanDemircan\LaravelPromo;
 
+use Closure;
 use Illuminate\Database\Eloquent\Model;
 use OguzcanDemircan\LaravelPromo\Enums\ActiveEnum;
 use OguzcanDemircan\LaravelPromo\Enums\PromoTypeEnum;
@@ -93,7 +94,7 @@ class LaravelPromo
      * @throws PromoExpired
      * @return Promo
      */
-    public function check(string $code)
+    public function check(string $code, Closure $callback)
     {
         $promo = $this->promoModel->whereCode($code)->first();
 
@@ -106,6 +107,10 @@ class LaravelPromo
 
         if (auth()->check() && $promo->users()->wherePivot('user_id', auth()->id())->exists()) {
             throw PromoAlreadyRedeemed::create($promo);
+        }
+
+        if (is_callable($callback)) {
+            return $callback($promo);
         }
 
         return $promo;
