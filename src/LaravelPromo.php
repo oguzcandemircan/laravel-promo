@@ -94,7 +94,7 @@ class LaravelPromo
      * @throws PromoExpired
      * @return Promo
      */
-    public function check(string $code, Closure $callback)
+    public function check(string $code, Closure $callback = null)
     {
         $promo = $this->promoModel->whereCode($code)->first();
 
