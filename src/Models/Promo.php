@@ -70,12 +70,17 @@ class Promo extends Model
      */
     public function isNotExpired()
     {
-        return ! $this->isExpired();
+        return !$this->isExpired();
     }
 
-    public function isStart()
+    public function isStarted()
     {
-        return $this->starts_at ? $this->starts_at->isFuture() : false;
+        return $this->starts_at ? $this->starts_at->isPast() : false;
+    }
+
+    public function isNotStarted()
+    {
+        return !$this->isStarted();
     }
 
     public static function findByCode(string $code)
