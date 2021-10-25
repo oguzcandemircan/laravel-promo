@@ -70,7 +70,7 @@ class Promo extends Model
      */
     public function isNotExpired()
     {
-        return !$this->isExpired();
+        return ! $this->isExpired();
     }
 
     public function isStarted()
@@ -80,7 +80,7 @@ class Promo extends Model
 
     public function isNotStarted()
     {
-        return !$this->isStarted();
+        return ! $this->isStarted();
     }
 
     public static function findByCode(string $code)
