@@ -6,7 +6,6 @@ use Closure;
 use Illuminate\Database\Eloquent\Model;
 use OguzcanDemircan\LaravelPromo\Enums\ActiveEnum;
 use OguzcanDemircan\LaravelPromo\Enums\PromoTypeEnum;
-use OguzcanDemircan\LaravelPromo\Exceptions\PromoAlreadyRedeemed;
 use OguzcanDemircan\LaravelPromo\Exceptions\PromoExpired;
 use OguzcanDemircan\LaravelPromo\Exceptions\PromoIsInvalid;
 use OguzcanDemircan\LaravelPromo\Models\Promo;
