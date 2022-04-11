@@ -105,10 +105,6 @@ class LaravelPromo
             throw PromoExpired::create($promo);
         }
 
-        if (auth()->check() && $promo->users()->wherePivot('user_id', auth()->id())->exists()) {
-            throw PromoAlreadyRedeemed::create($promo);
-        }
-
         if (is_callable($callback)) {
             return $callback($promo);
         }
